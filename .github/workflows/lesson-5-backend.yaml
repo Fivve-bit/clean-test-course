@@ -8,11 +8,6 @@ jobs:
   security_test:
     needs: [deploy]
     runs-on: ubuntu-latest
-    steps:
-      - name: ZAP Baseline Scan
-        uses: zaproxy/action-baseline@v0.15.0
-    with:
-        target: 'https://hangryhippo.quantic.host'
     defaults:
       run:
         working-directory: backend
@@ -25,6 +20,10 @@ jobs:
           hangry_api/hangry_api/settings.py
       - name: PyCharm Python Security Scanner
         uses: tonybaloney/pycharm-security@1.25.1
+      - name: ZAP Baseline Scanner
+        uses: zaproxy/action-baseline@v0.15.0
+        with: 
+          target: 'https://hangryhippo.quantic.host'
   build_and_test:
     needs: [security_test]
     runs-on: ubuntu-latest

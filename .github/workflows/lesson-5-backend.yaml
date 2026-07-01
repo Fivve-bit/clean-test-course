@@ -17,7 +17,7 @@ jobs:
       - name: PyCharm Python Security Scanner
         uses: tonybaloney/pycharm-security@1.25.1
   build_and_test:
-    needs: [security-test]
+    needs: [security_test]
     runs-on: ubuntu-latest
     defaults:
       run:
